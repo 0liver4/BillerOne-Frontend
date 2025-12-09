@@ -47,7 +47,6 @@ export default function ArticlesPage() {
 
   return (
     <div className="space-y-6 p-4 lg:p-6">
-      {/* Header y Buscador */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl lg:text-3xl font-bold text-foreground">
@@ -66,7 +65,6 @@ export default function ArticlesPage() {
             />
           </div>
 
-          {/* Modal Form */}
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button
@@ -160,7 +158,6 @@ export default function ArticlesPage() {
         </div>
       </div>
 
-      {/* Tabla de artículos */}
       <Card className="p-0 overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
@@ -239,7 +236,6 @@ export default function ArticlesPage() {
         </div>
       )}
 
-      {/* Modal Confirm Delete */}
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent>
           <DialogHeader>

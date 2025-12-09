@@ -42,7 +42,6 @@ export default function ClientsPage() {
 
   return (
     <div className="space-y-6 p-4 lg:p-6">
-      {/* Encabezado */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl lg:text-3xl font-bold text-foreground">
@@ -254,14 +253,12 @@ export default function ClientsPage() {
         </table>
       </Card>
 
-      {/* Mensaje */}
       {message && (
         <div className="bg-green-100 text-green-800 p-2 rounded-md mb-2 text-center">
           {message}
         </div>
       )}
 
-      {/* Modal de eliminación */}
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent className="max-w-sm text-center">
           <DialogHeader>

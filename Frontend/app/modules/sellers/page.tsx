@@ -41,7 +41,6 @@ export default function SellersPage() {
 
   return (
     <div className="space-y-6 p-4 lg:p-6">
-      {/* Encabezado */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl lg:text-3xl font-bold text-foreground">
@@ -162,7 +161,6 @@ export default function SellersPage() {
         </div>
       </div>
 
-      {/* Tabla */}
       <Card className="p-0 overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
@@ -236,14 +234,12 @@ export default function SellersPage() {
         </table>
       </Card>
 
-      {/* Mensaje */}
       {message && (
         <div className="bg-green-100 text-green-800 p-2 rounded-md mb-2 text-center">
           {message}
         </div>
       )}
 
-      {/* Modal de confirmación de eliminación */}
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent className="max-w-sm text-center">
           <DialogHeader>

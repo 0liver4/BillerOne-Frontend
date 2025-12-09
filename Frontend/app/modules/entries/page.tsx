@@ -31,7 +31,7 @@ type AsientoHistorial = {
 };
 
 export default function AccountingEntriesPage() {
-  // Formulario
+
   const [amount, setAmount] = useState("");
   const [period, setPeriod] = useState("");
   const [description, setDescription] = useState("");
@@ -39,20 +39,15 @@ export default function AccountingEntriesPage() {
   const [error, setError] = useState<string | null>(null);
   const [responseData, setResponseData] = useState<any>(null);
 
-  // Facturas
   const [facturas, setFacturas] = useState<Factura[]>([]);
   const [selectedFacturaId, setSelectedFacturaId] = useState<number | null>(
     null
   );
   const [loadingFacturas, setLoadingFacturas] = useState(false);
 
-  // Historial
   const [historial, setHistorial] = useState<AsientoHistorial[]>([]);
   const [loadingHistorial, setLoadingHistorial] = useState(false);
 
-  // =========================
-  // Cargar facturas
-  // =========================
   const loadFacturas = async () => {
     try {
       setLoadingFacturas(true);
@@ -68,9 +63,6 @@ export default function AccountingEntriesPage() {
     }
   };
 
-  // =========================
-  // Cargar historial
-  // =========================
   const loadHistorial = async () => {
     try {
       setLoadingHistorial(true);
@@ -91,28 +83,21 @@ export default function AccountingEntriesPage() {
     loadHistorial();
   }, []);
 
-  // Cuando el usuario selecciona una factura
   const handleSelectFactura = (factura: Factura) => {
     setSelectedFacturaId(factura.FacturaID);
 
-    // Monto = total de la factura
     setAmount(String(factura.Total));
 
-    // Periodo = YYYY-MM basado en la fecha de la factura
     const d = new Date(factura.Fecha);
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, "0");
     setPeriod(`${yyyy}-${mm}`);
 
-    // Descripción sugerida
     setDescription(
       `Asiento de Facturacion correspondiente al periodo ${yyyy}-${mm} - Factura #${factura.FacturaID}`
     );
   };
 
-  // =========================
-  // Enviar asiento
-  // =========================
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -134,7 +119,7 @@ export default function AccountingEntriesPage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             amount: numericAmount,
-            period: period || undefined, // YYYY-MM
+            period: period || undefined,
             description: description || undefined,
             invoiceId: selectedFacturaId || undefined,
           }),
@@ -148,7 +133,7 @@ export default function AccountingEntriesPage() {
       }
 
       setResponseData(data);
-      await loadHistorial(); // refresca la tabla
+      await loadHistorial();
     } catch (err: any) {
       setError(err.message || "Error inesperado al enviar el asiento.");
     } finally {
@@ -158,7 +143,6 @@ export default function AccountingEntriesPage() {
 
   return (
     <div className="space-y-6 p-4 lg:p-6">
-      {/* Título y subtítulo */}
       <div>
         <h1 className="text-2xl lg:text-3xl font-bold text-foreground">
           Asientos contables
@@ -169,11 +153,8 @@ export default function AccountingEntriesPage() {
         </p>
       </div>
 
-      {/* Layout principal */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        {/* IZQUIERDA: selector de factura + formulario */}
         <Card className="xl:col-span-2 p-4 lg:p-6 space-y-6">
-          {/* Selector de factura */}
           <div className="space-y-2">
             <Label>Seleccionar factura</Label>
             <div className="flex gap-2 items-center">
@@ -216,7 +197,6 @@ export default function AccountingEntriesPage() {
             </p>
           </div>
 
-          {/* Formulario de asiento */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <h2 className="text-lg font-semibold">
               Nuevo asiento de facturación
@@ -283,7 +263,6 @@ export default function AccountingEntriesPage() {
           </form>
         </Card>
 
-        {/* DERECHA: ayuda */}
         <Card className="hidden xl:flex flex-col justify-between p-4 lg:p-6 space-y-4">
           <div>
             <h2 className="text-base font-semibold">
@@ -316,7 +295,6 @@ export default function AccountingEntriesPage() {
         </Card>
       </div>
 
-      {/* HISTORIAL DE ASIENTOS */}
       <Card className="p-4 lg:p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold">Historial de asientos</h2>
@@ -361,7 +339,7 @@ export default function AccountingEntriesPage() {
                     <span
                       className={
                         h.status === "OK"
-                          ? "text-emerald-600 font-medium"
+                          ? "text-emerald-700 font-medium"
                           : "text-red-600 font-medium"
                       }
                     >

@@ -25,9 +25,7 @@ export default function FacturacionPage() {
         <p className="text-muted-foreground mt-1">Genere facturas de venta</p>
       </div>
 
-      {/* SECCIÓN PRINCIPAL */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        {/* IZQUIERDA: Artículos */}
         <div>
           <Card className="p-4 lg:p-6 space-y-4">
             <Label>Artículos disponibles</Label>
@@ -81,7 +79,6 @@ export default function FacturacionPage() {
           </Card>
         </div>
 
-        {/* DERECHA: Facturación */}
         <div>
           <Card className="p-4 lg:p-6 space-y-4">
             <div className="grid grid-cols-1 gap-4">
@@ -132,7 +129,6 @@ export default function FacturacionPage() {
               </div>
             </div>
 
-            {/* TABLA DE ITEMS */}
             <div className="overflow-x-auto mt-4">
               <table className="w-full border-collapse">
                 <thead>
@@ -182,7 +178,6 @@ export default function FacturacionPage() {
               </table>
             </div>
 
-            {/* TOTALES */}
             <div className="mt-4 border-t pt-4 space-y-2">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Subtotal</span>
@@ -214,7 +209,6 @@ export default function FacturacionPage() {
         </div>
       </div>
 
-      {/* TABLA DE FACTURAS */}
       <Card className="p-4 lg:p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold">Facturas Generadas</h2>
@@ -284,7 +278,6 @@ export default function FacturacionPage() {
         </div>
       </Card>
 
-      {/* DIALOGS */}
       <Dialog open={f.open} onOpenChange={f.setOpen}>
         <DialogContent>
           <DialogHeader>
@@ -303,7 +296,6 @@ export default function FacturacionPage() {
           </DialogHeader>
 
           {f.facturaSeleccionada && (
-            // 👇 AGREGA ESTE DIV CON EL ID
             <div
               id="detalle-factura"
               className="space-y-4 bg-white p-4 rounded-lg"

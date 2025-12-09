@@ -46,7 +46,6 @@ export default function Dashboard() {
         facturas: facturas.length,
       });
 
-      // Gráfico: total por vendedor
       const ventasPorVendedor = facturas.reduce(
         (
           acc: { vendedor: string; total: number }[],
@@ -90,7 +89,6 @@ export default function Dashboard() {
         </Button>
       </div>
 
-      {/* Tarjetas resumen */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <Card className="border-emerald-200 shadow-md">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -141,7 +139,6 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Gráfico */}
       <Card className="border-emerald-200 shadow-md">
         <CardHeader>
           <CardTitle className="text-emerald-900">

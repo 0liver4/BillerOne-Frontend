@@ -51,22 +51,19 @@ export function useClientsLogic() {
   const validateForm = () => {
     const errors: { [key: string]: string } = {};
 
-    // Nombre comercial obligatorio
     if (!form.NombreComercial)
       errors.NombreComercial = "El nombre es requerido";
 
-    // Cédula/RNC obligatorio y válido
     if (!form.RNC_Cedula) {
       errors.RNC_Cedula = "El RNC/Cédula es requerido";
     } else {
-      const value = form.RNC_Cedula.replace(/[^0-9]/g, ""); // quitar guiones
+      const value = form.RNC_Cedula.replace(/[^0-9]/g, "");
       if (!/^\d{11}$/.test(value)) {
         errors.RNC_Cedula = "Cédula inválida (debe tener 11 dígitos)";
       } else {
-        // Validación básica mod 11
         const digits = value.split("").map(Number);
         let sum = 0;
-        const multipliers = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2]; // multiplicadores alternados
+        const multipliers = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
         for (let i = 0; i < 10; i++) {
           let prod = digits[i] * multipliers[i];
           sum += Math.floor(prod / 10) + (prod % 10);
@@ -75,7 +72,6 @@ export function useClientsLogic() {
         if (checkDigit !== digits[10]) {
           errors.RNC_Cedula = "Cédula inválida (dígito verificador incorrecto)";
         } else {
-          // Verificar duplicado
           const exists = data.some(
             (c) => c.RNC_Cedula === form.RNC_Cedula && c.ClienteID !== editingId
           );
@@ -85,11 +81,9 @@ export function useClientsLogic() {
       }
     }
 
-    // Cuenta contable obligatoria
     if (!form.CuentaContable)
       errors.CuentaContable = "La cuenta contable es requerida";
 
-    // Estado obligatorio
     if (form.Estado === undefined || form.Estado === null)
       errors.Estado = "El estado es requerido";
 

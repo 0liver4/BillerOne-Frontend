@@ -219,7 +219,6 @@ export function useFacturacion() {
     const elemento = document.getElementById("detalle-factura");
     if (!elemento) return;
 
-    // 🔹 Fuerza un fondo visible y compatible
     const originalBg = elemento.style.backgroundColor;
     elemento.style.backgroundColor = "#ffffff";
 
@@ -230,7 +229,6 @@ export function useFacturacion() {
         useCORS: true,
         logging: false,
         onclone: (doc) => {
-          // 🔹 Elimina sombras y colores lab() que rompen html2canvas
           doc.querySelectorAll("*").forEach((el) => {
             const style = (el as HTMLElement).style;
             if (
@@ -269,7 +267,6 @@ export function useFacturacion() {
       console.error("Error al generar PDF:", err);
       alert("Ocurrió un error al generar el PDF");
     } finally {
-      // 🔹 Restaura el fondo original
       elemento.style.backgroundColor = originalBg;
     }
   };
