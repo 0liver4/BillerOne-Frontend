@@ -14,6 +14,7 @@ const items = [
   { href: "/app/dashboard/billing", label: "Billing", icon: Receipt },
   { href: "/app/dashboard/articles", label: "Artículos", icon: Package },
   { href: "/app/dashboard/sellers", label: "Sellers", icon: UserCheck },
+  { href: "/app/dashboard/entries", label: "Asientos contables", icon: BookOpen },
 ]
 
 export default function AppSidebar() {

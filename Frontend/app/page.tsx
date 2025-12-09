@@ -32,7 +32,7 @@ export default function LoginPage() {
         return;
       }
 
-      window.location.href = "/dashboard";
+      window.location.href = "/modules/dashboard";
     } catch (err) {
       console.error(err);
       setError("Error de conexión con el servidor");
@@ -42,7 +42,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-700 via-emerald-600 to-emerald-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-emerald-700 via-emerald-600 to-emerald-800 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Formulario */}
         <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-white/30">

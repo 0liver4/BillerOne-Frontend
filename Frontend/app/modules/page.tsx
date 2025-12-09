@@ -8,6 +8,7 @@ import {
   Package,
   TrendingUp,
   TrendingDown,
+  BookOpen,
 } from "lucide-react";
 import {
   BarChart,
