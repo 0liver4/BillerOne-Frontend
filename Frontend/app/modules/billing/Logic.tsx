@@ -11,14 +11,22 @@ export type Cliente = {
   ClienteID: number;
   NombreComercial: string;
   RNC_Cedula?: string;
+  Estado: boolean;   
 };
+
 export type Articulo = {
   ArticuloID: number;
   Descripcion: string;
   PrecioUnitario: number;
   Estado: number;
 };
-export type Vendedor = { VendedorID: number; Nombre: string };
+
+export type Vendedor = { 
+  VendedorID: number; 
+  Nombre: string;
+  Estado: boolean; 
+};
+
 export type Item = {
   key: string;
   ArticuloID: number;
@@ -27,6 +35,7 @@ export type Item = {
   PrecioUnitario: number;
   Importe: number;
 };
+
 export type Factura = {
   FacturaID: number;
   ClienteID: number;
@@ -37,6 +46,7 @@ export type Factura = {
   Comentario: string | null;
   Total: number;
 };
+
 export type FacturaDetalle = {
   FacturaID: number;
   ClienteID: number;
@@ -56,6 +66,7 @@ export type FacturaDetalle = {
 };
 
 export function useFacturacion() {
+
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [vendedores, setVendedores] = useState<Vendedor[]>([]);
   const [articulos, setArticulos] = useState<Articulo[]>([]);
@@ -76,9 +87,11 @@ export function useFacturacion() {
       fetch(`${API_BASE_URL}/api/articulos`).then((r) => r.json()),
       fetch(`${API_BASE_URL}/api/vendedores`).then((r) => r.json()),
     ]);
-    setClientes(c);
+
+    // 🔥 FILTRO DE ACTIVOS
+    setClientes(c.filter((x: Cliente) => x.Estado === true));
     setArticulos(a.filter((x: Articulo) => x.Estado));
-    setVendedores(v);
+    setVendedores(v.filter((x: Vendedor) => x.Estado === true));
   };
 
   const loadFacturas = async () => {
@@ -231,13 +244,6 @@ export function useFacturacion() {
         onclone: (doc) => {
           doc.querySelectorAll("*").forEach((el) => {
             const style = (el as HTMLElement).style;
-            if (
-              style.color.includes("lab") ||
-              style.backgroundColor.includes("lab")
-            ) {
-              style.color = "#000";
-              style.backgroundColor = "#fff";
-            }
             style.boxShadow = "none";
             style.filter = "none";
           });

@@ -7,8 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+const API_BASE_URL = "https://billerone-backend.onrender.com";
 
 type Factura = {
   FacturaID: number;
