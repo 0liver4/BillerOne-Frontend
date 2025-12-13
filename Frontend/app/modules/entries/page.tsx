@@ -204,6 +204,7 @@ export default function AccountingEntriesPage() {
             <div className="space-y-1">
               <Label htmlFor="amount">Monto</Label>
               <Input
+                readOnly
                 id="amount"
                 type="number"
                 min="0"
